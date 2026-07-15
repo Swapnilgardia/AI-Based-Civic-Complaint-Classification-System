@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% block title %}Resolved Complaints{% endblock %}
+
+{% block content %}
+
+<div class="card">
+
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:20px;">
+
+        <div>
+            <h1 style="margin-bottom:6px;">Resolved Complaints</h1>
+            <p class="muted" style="margin:0;">
+                View all successfully resolved complaints.
+            </p>
+        </div>
+
+        <div class="muted">
+            Total Resolved:
+            <strong>{{ complaints|length }}</strong>
+        </div>
+
+    </div>
+
+    <div class="table-wrap">
+
+        <table class="responsive-table">
+
+            <thead>
+
+                <tr>
+                    <th style="width:80px;">ID</th>
+                    <th>Category</th>
+                    <th>Priority</th>
+                    <th>Confidence</th>
+                    <th>Status</th>
+                    <th>Submitted</th>
+                    <th style="width:120px;">Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for c in complaints %}
+
+                <tr>
+
+                    <td data-label="ID">
+                        <strong>#{{ c.id }}</strong>
+                    </td>
+
+                    <td data-label="Category">
+                        {{ c.category }}
+                    </td>
+
+                    <td data-label="Priority">
+                        <span class="badge {{ c.priority|lower }}">
+                            {{ c.priority }}
+                        </span>
+                    </td>
+
+                    <td data-label="Confidence">
+                        <strong>
+                            {{ (c.confidence * 100)|round(1) }}%
+                        </strong>
+                    </td>
+
+                    <td data-label="Status">
+                        <span class="badge low">
+                            {{ c.status }}
+                        </span>
+                    </td>
+
+                    <td data-label="Submitted">
+                        {{ c.created_at }}
+                    </td>
+
+                    <td data-label="Action">
+
+                        <form method="post"
+                              action="{{ url_for('delete_complaint', complaint_id=c.id) }}"
+                              onsubmit="return confirm('Are you sure you want to permanently delete this complaint?');">
+
+                            <button type="submit" class="delete-btn">
+                                Delete
+                            </button>
+
+                        </form>
+
+                    </td>
+
+                </tr>
+
+                {% else %}
+
+                <tr>
+
+                    <td colspan="7"
+                        class="muted"
+                        style="text-align:center;padding:30px;">
+
+                        No resolved complaints found.
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

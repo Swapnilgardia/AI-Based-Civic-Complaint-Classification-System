@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+database/complaints.db
+static/uploads/*.png
+static/uploads/*.jpg
+static/uploads/*.jpeg
+!static/uploads/.gitkeep
+.env
+venv/
+.venv/
+.DS_Store
+datasets/f311.csv
+datasets/

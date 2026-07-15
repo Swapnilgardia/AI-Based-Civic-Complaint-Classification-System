@@ -1,0 +1,16 @@
+# Lightweight deployment option: TEXT-ONLY classification (no image model).
+# Use this instead of requirements.txt if deploying to a memory-constrained
+# host (e.g. Render's free tier, which has ~512MB RAM) where TensorFlow does
+# not fit. The Flask app already handles a missing image model gracefully
+# and will fall back to text-only classification automatically.
+#
+# To use: rename this file to requirements.txt (or point Render's build at
+# this file) and do NOT copy models/image_model.keras into the deployment.
+
+Flask==3.1.3
+gunicorn==22.0.0
+scikit-learn==1.8.0
+pandas==2.2.3
+numpy==2.1.3
+joblib==1.4.2
+Pillow==11.0.0

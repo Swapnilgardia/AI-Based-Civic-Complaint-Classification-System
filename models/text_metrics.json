@@ -1,0 +1,103 @@
+{
+  "test_accuracy": 0.9964444444444445,
+  "cv_mean_accuracy": 0.9962222222222221,
+  "cv_std_accuracy": 0.0003767961101736194,
+  "cv_scores": [
+    0.9961111111111111,
+    0.9961111111111111,
+    0.9958333333333333,
+    0.9961111111111111,
+    0.9969444444444444
+  ],
+  "classification_report": {
+    "Drainage Blockage": {
+      "precision": 1.0,
+      "recall": 0.9827777777777778,
+      "f1-score": 0.9913140935836369,
+      "support": 1800.0
+    },
+    "Garbage": {
+      "precision": 1.0,
+      "recall": 0.9994444444444445,
+      "f1-score": 0.999722145040289,
+      "support": 1800.0
+    },
+    "Road Damage": {
+      "precision": 0.9830693610049154,
+      "recall": 1.0,
+      "f1-score": 0.9914624070503993,
+      "support": 1800.0
+    },
+    "Streetlight Fault": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 1800.0
+    },
+    "Water Leakage": {
+      "precision": 0.9994447529150472,
+      "recall": 1.0,
+      "f1-score": 0.9997222993612885,
+      "support": 1800.0
+    },
+    "accuracy": 0.9964444444444445,
+    "macro avg": {
+      "precision": 0.9965028227839925,
+      "recall": 0.9964444444444445,
+      "f1-score": 0.9964441890071228,
+      "support": 9000.0
+    },
+    "weighted avg": {
+      "precision": 0.9965028227839925,
+      "recall": 0.9964444444444445,
+      "f1-score": 0.9964441890071228,
+      "support": 9000.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      1769,
+      0,
+      31,
+      0,
+      0
+    ],
+    [
+      0,
+      1799,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      1800,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1800,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      1800
+    ]
+  ],
+  "labels": [
+    "Drainage Blockage",
+    "Garbage",
+    "Road Damage",
+    "Streetlight Fault",
+    "Water Leakage"
+  ],
+  "train_size": 36000,
+  "test_size": 9000
+}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Complaint Submitted{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>✅ Complaint Registered</h1>
+  <p>Your complaint ID:</p>
+  <div class="complaint-id">{{ complaint.id }}</div>
+  <p class="muted">Please save this ID to track the status of your complaint on the Dashboard.</p>
+
+  <div class="table-wrap">
+    <table class="kv-table">
+      <tr><th>Category</th><td>{{ complaint.category }}</td></tr>
+      <tr>
+        <th>Priority</th>
+        <td>
+          <span class="badge {{ complaint.priority|lower }}">{{ complaint.priority }}</span>
+          {% if complaint.flagged_for_review %}
+            <span class="muted">(flagged for manual review — low classification confidence)</span>
+          {% endif %}
+        </td>
+      </tr>
+      <tr><th>Confidence</th><td>{{ (complaint.confidence * 100)|round(1) }}%</td></tr>
+      <tr><th>Classification source</th><td>{{ complaint.source }}</td></tr>
+      <tr><th>Status</th><td>{{ complaint.status }}</td></tr>
+      <tr><th>Submitted at</th><td>{{ complaint.created_at }}</td></tr>
+    </table>
+  </div>
+
+  {% if complaint.complaint_text %}
+    <h3 style="margin-top:24px;">Your description</h3>
+    <p>{{ complaint.complaint_text }}</p>
+  {% endif %}
+
+  {% if complaint.image_filename %}
+    <h3 style="margin-top:24px;">Uploaded photo</h3>
+    <img src="{{ url_for('static', filename='uploads/' + complaint.image_filename) }}" class="result-image" alt="Uploaded complaint photo">
+  {% endif %}
+
+  <div class="actions">
+    <a href="{{ url_for('index') }}" class="btn">Submit another complaint</a>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">View Dashboard</a>
+  </div>
+</div>
+{% endblock %}

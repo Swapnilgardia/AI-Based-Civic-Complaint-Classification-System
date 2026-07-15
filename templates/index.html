@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Submit a Complaint{% endblock %}
+{% block content %}
+<div class="card">
+  <h1>Submit a Civic Complaint</h1>
+  <p class="muted">Describe the issue in your own words and, if you have one, attach a photo. Our AI system will automatically classify the complaint type and assign a priority level.</p>
+
+  <form action="{{ url_for('submit') }}" method="post" enctype="multipart/form-data">
+    <label for="complaint_text">Complaint description</label>
+    <textarea id="complaint_text" name="complaint_text" placeholder="e.g. The drain is blocked, causing water to overflow onto the road.." required></textarea>
+
+    <label for="complaint_image">Photo (optional)</label>
+    <div class="upload-box">
+      <p class="muted" style="margin-bottom:8px;">Drop a photo here or choose a file</p>
+      <input type="file" id="complaint_image" name="complaint_image" accept=".png,.jpg,.jpeg">
+    </div>
+
+    <button type="submit">Classify &amp; Submit Complaint</button>
+  </form>
+</div>
+
+<div class="card">
+  <h3>How it works</h3>
+  <ol class="muted">
+    <li>Your complaint text is analyzed using TF-IDF + Logistic Regression (NLP).</li>
+    <li>If you upload a photo, it's analyzed with a CNN / MobileNetV2 image model.</li>
+    <li>If both are provided, predictions are combined for a more confident result.</li>
+    <li>A priority level (High / Medium / Low) is assigned using predefined municipal rules.</li>
+    <li>You receive a unique complaint ID to track your submission on the Dashboard.</li>
+  </ol>
+</div>
+{% endblock %}
